@@ -1,6 +1,7 @@
 import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/app_colors.dart';
@@ -119,7 +120,7 @@ class _AdvanceSalaryPageState extends State<AdvanceSalaryPage> {
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Text(
-                              'USD 500.0',
+                              '${_advanceSalaryController.calculateTotalSalaryAndCurrencyForCurrentMonth().key} ${_advanceSalaryController.calculateTotalSalaryAndCurrencyForCurrentMonth().value.toStringAsFixed(0)}',
                               style: CustomTextStyles.bodyTextStyle(
                                   color: Colors.white),
                             ),
@@ -128,7 +129,7 @@ class _AdvanceSalaryPageState extends State<AdvanceSalaryPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'January 2023',
+                                DateFormat('MMMM y', 'en_US').format(DateTime.now()),
                                 style: CustomTextStyles.bodyTextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,

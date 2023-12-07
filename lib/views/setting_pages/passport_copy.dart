@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constants/gradeinet_background.dart';
+import '../../controllers/auth_controller.dart';
+import '../../models/user_model.dart';
 
 class PassportCopy extends StatefulWidget {
   const PassportCopy({super.key});
@@ -11,6 +13,8 @@ class PassportCopy extends StatefulWidget {
 }
 
 class _PassportCopyState extends State<PassportCopy> {
+  final UserModel _userData = Get.find<AuthController>().userData.value;
+
   @override
   Widget build(BuildContext context) {
     return GradientBackground(
@@ -41,8 +45,8 @@ class _PassportCopyState extends State<PassportCopy> {
           height: double.infinity,
           width: double.infinity,
           child: Center(
-            child: Image.asset(
-              'name',
+            child: Image.network(
+              _userData.passportCopy!,
               fit: BoxFit.cover,
             ),
           ),

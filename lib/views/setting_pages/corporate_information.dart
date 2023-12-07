@@ -17,7 +17,8 @@ class CorporateInformation extends StatefulWidget {
 }
 
 class _CorporateInformationState extends State<CorporateInformation> {
-  final EmployementData _employementData = Get.find<AuthController>().userData.value.employementData!;
+  final EmployementData _employementData =
+      Get.find<AuthController>().userData.value.employementData!;
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +52,30 @@ class _CorporateInformationState extends State<CorporateInformation> {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
-               SettingListTile(text: 'Position', trailing: _employementData.positionGrade),
+              SettingListTile(
+                  text: 'Position', trailing: _employementData.positionGrade),
               const SizedBox(height: 20),
-               SettingListTile(text: 'Report To', trailing: _employementData.reportTo.toString()),
-               SettingListTile(text: 'Work Location', trailing: _employementData.workLocation),
+              SettingListTile(
+                  text: 'Report To',
+                  trailing: _employementData.reportTo.toString()),
+              SettingListTile(
+                  text: 'Work Location',
+                  trailing: _employementData.workLocation!),
               const SizedBox(height: 20),
-               SettingListTile(text: 'Job Type', trailing: _employementData.jobType),
-               SettingListTile(text: 'Start Date', trailing: TimeDateFunctions.dateTimeInDigitsWithForwardDash(_employementData.dateJoined!)),
-               SettingListTile(text: 'End Date', trailing: TimeDateFunctions.dateTimeInDigitsWithForwardDash(_employementData.jobTypeEnd)),
+              SettingListTile(
+                  text: 'Job Type', trailing: _employementData.jobType),
+              SettingListTile(
+                  text: 'Start Date',
+                  trailing: _employementData.dateJoined == ''
+                      ? ''
+                      : TimeDateFunctions.dateTimeInDigitsWithForwardDash(
+                          _employementData.dateJoined!)),
+              SettingListTile(
+                  text: 'End Date',
+                  trailing: _employementData.jobTypeEnd == ''
+                      ? ''
+                      : TimeDateFunctions.dateTimeInDigitsWithForwardDash(
+                          _employementData.jobTypeEnd!)),
               const SizedBox(height: 20),
               Align(
                 alignment: Alignment.topLeft,
@@ -73,9 +90,11 @@ class _CorporateInformationState extends State<CorporateInformation> {
                   ),
                 ),
               ),
-               SettingListTile(text: 'Name', trailing: _employementData.referralName),
-               SettingListTile(
-                  text: 'Contact Number', trailing: _employementData.referralContact),
+              SettingListTile(
+                  text: 'Name', trailing: _employementData.referralName),
+              SettingListTile(
+                  text: 'Contact Number',
+                  trailing: _employementData.referralContact),
             ],
           ),
         ),

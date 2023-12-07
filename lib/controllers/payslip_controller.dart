@@ -37,7 +37,6 @@ class PaySlipController extends GetxController {
         'user_id': authController.userData.value.userId.toString(),
         'year': selectedYear.value.toString(),
       };
-      print(body);
       var response = await DataApiService.instance
           .post('/payrolls', body)
           .catchError((error) {
@@ -51,7 +50,6 @@ class PaySlipController extends GetxController {
       if (response == null) return;
 
       var result = json.decode(response);
-      print(result);
 
       paySlipList.value = RxList<PaySlipModelList>.from(
           result['data'].map((x) => PaySlipModelList.fromJson(x)));

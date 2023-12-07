@@ -104,7 +104,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
               ),
                SettingListTile(
                 text: 'Passport Expired',
-                trailing: TimeDateFunctions.dateTimeInDigitsWithForwardDash (_userData.passportExpiryDate!),
+                trailing: _userData.passportExpiryDate==null?'':TimeDateFunctions.dateTimeInDigitsWithForwardDash (_userData.passportExpiryDate!),
               ),
               const SizedBox(height: 20),
                SettingListTile(

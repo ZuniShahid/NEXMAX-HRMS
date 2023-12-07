@@ -101,13 +101,11 @@ class AuthController extends GetxController {
     });
     if (response == null) return;
     var result = json.decode(response);
-    print(result);
 
     userData.value = UserModel.fromJson(result);
     accessToken.value = userData.value.accessToken!;
     userRefreshToken.value = userData.value.refreshToken!;
     if (savId.isTrue) {
-      print('save id is called');
       _authPrefrence.saveUserDataToken(token: accessToken.value);
       _authPrefrence.saveUserRefreshToken(token: userRefreshToken.value);
       _authPrefrence.setUserLoggedIn(true);

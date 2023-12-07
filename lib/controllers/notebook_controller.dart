@@ -47,10 +47,14 @@ class NotebookController extends GetxController {
       if (response == null) return;
 
       var result = json.decode(response);
-      print("result");
-      print(result);
       totalItemCount = int.parse(result['totalCount'].toString());
-      loadedItemCount += int.parse(result['loadedCount'].toString());
+      int loadedCount = int.parse(result['loadedCount'].toString());
+
+      if (loadedCount < 0) {
+        loadedItemCount = 0;
+      } else {
+        loadedItemCount += loadedCount;
+      }
 
       if (loadedItemCount < totalItemCount) {
         currentPage++; // Increment the current page

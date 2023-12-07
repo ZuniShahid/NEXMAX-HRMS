@@ -13,11 +13,5 @@ class LazyController extends Bindings {
   @override
   Future<void> dependencies() async {
     Get.put(AuthController());
-    Get.put(AnnouncementController());
-    Get.put(LeaveController());
-    Get.put(PaySlipController());
-    Get.put(AdvanceSalaryController());
-    Get.put(NotebookController());
-
   }
 }

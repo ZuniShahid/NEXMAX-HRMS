@@ -29,7 +29,6 @@ class DataApiService {
   //GET
   Future<dynamic> get(String api) async {
     var uri = Uri.parse(BASE_URL + api);
-    print(BASE_URL + api);
     try {
       var response = await http.get(uri, headers: {
         "Authorization": "Bearer ${authController.accessToken.value}",
@@ -50,7 +49,6 @@ class DataApiService {
     List<String> multiPartList = const [],
   }) async {
     Uri uri = Uri.parse(BASE_URL + api);
-    print(BASE_URL + api);
     try {
       if (multiPartList.isNotEmpty) {
         var headers = {
@@ -97,7 +95,6 @@ class DataApiService {
       responseJson = utf8.decode(response.bodyBytes);
     }
     debugPrint('responseJson');
-    print('RESPONSEJSON: $responseJson');
     switch (response.statusCode) {
       case 200:
         return responseJson;

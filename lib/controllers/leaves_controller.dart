@@ -43,13 +43,17 @@ class LeaveController extends GetxController {
     try {
       var response = await DataApiService.instance.post('/leaves', body);
       var result = json.decode(response);
-      print("result");
-      print(result);
 
       if (response == null) return;
 
       totalItemCount = int.parse(result['totalCount'].toString());
-      loadedItemCount += int.parse(result['loadedCount'].toString());
+      int loadedCount = int.parse(result['loadedCount'].toString());
+
+      if (loadedCount < 0) {
+        loadedItemCount = 0;
+      } else {
+        loadedItemCount += loadedCount;
+      }
 
       if (loadedItemCount < totalItemCount) {
         currentPage++; // Increment the current page
@@ -108,8 +112,6 @@ class LeaveController extends GetxController {
       'reason': reason,
       'leave_type': leaveType,
     };
-    print("requestBody");
-    print(requestBody);
     try {
       final response =
           await DataApiService.instance.post('/leaves-create', requestBody);
@@ -140,23 +142,18 @@ class LeaveController extends GetxController {
       if (response == null) return;
 
       var result = json.decode(response);
-      print(result);
       final Map<String, dynamic>? leaveData = result['leaveData'];
       if (leaveData != null) {
         // You can now work with the leaveData
-        totalExpectDay.value = leaveData['total_expect_day'];
-        totalRestDays.value = leaveData['total_rest_days'].toString();
-        totalBalance.value = leaveData['total_balance'].toString();
+        totalExpectDay.value = leaveData['total_expect_day'] ?? '';
+        totalRestDays.value = leaveData['total_rest_days']?.toString() ?? '';
+        totalBalance.value = leaveData['total_balance']?.toString() ?? '';
 
         // Use these values as needed
       }
     } catch (error) {
       if (error is BadRequestException) {
-        print("error");
-        print(error);
         var apiError = json.decode(error.message!);
-        print("apiError");
-        print(apiError);
         CustomDialogBox.showErrorDialog(description: apiError["error"]);
       } else {
         _baseController.handleError(error);

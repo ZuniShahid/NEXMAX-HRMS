@@ -65,7 +65,6 @@ class CustomValidator {
     if (!regExp.hasMatch(value!)) {
       return 'Invalid date format (YYYY-DD-MM)';
     }
-    print(value);
     // Use the parse method of the DateTime class to convert the string to a date
     DateTime date;
     try {
@@ -75,10 +74,6 @@ class CustomValidator {
     }
 
     // Check if the month is greater than 12 or the day is greater than 31
-    print("date.day");
-    print(date);
-    print(date.day);
-    print(date.month);
     if (date.month > 12 || date.day > 31) {
       return 'Invalid date';
     }

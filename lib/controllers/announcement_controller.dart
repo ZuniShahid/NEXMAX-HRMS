@@ -50,10 +50,15 @@ class AnnouncementController extends GetxController {
       if (response == null) return;
 
       var result = json.decode(response);
-      print(result);
 
       totalItemCount.value = int.parse(result['totalCount'].toString());
-      loadedItemCount.value = int.parse(result['loadedCount'].toString());
+      int loadedCount = int.parse(result['loadedCount'].toString());
+
+      if (loadedCount < 0) {
+        loadedItemCount.value = 0;
+      } else {
+        loadedItemCount.value += loadedCount;
+      }
 
       if (loadedItemCount.value < totalItemCount.value) {
         currentPage.value++; // Increment the current page
@@ -101,7 +106,6 @@ class AnnouncementController extends GetxController {
       if (response == null) return;
 
       var result = json.decode(response);
-      print(result);
 
       List<Map<String, dynamic>> currenciesData = List.castFrom(result);
 

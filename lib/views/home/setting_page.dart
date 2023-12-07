@@ -136,7 +136,23 @@ class _SettingPageState extends State<SettingPage> {
                           },
                           title: const Center(child: Text('Logout')),
                         ),
-                      )
+                      ),
+                      const SizedBox(height: 20),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey, // Grey border color
+                            width: 0.3,
+                          ),
+                        ),
+                        child: ListTile(
+                          tileColor: Colors.white,
+                          onTap: () {
+                           Get.back();
+                          },
+                          title: const Center(child: Text('Go Back')),
+                        ),
+                      ),
                     ],
                   ),
                 ),

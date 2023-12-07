@@ -1,4 +1,3 @@
-
 class UserModel {
   final String? accessToken;
   final String? refreshToken;
@@ -54,61 +53,81 @@ class UserModel {
     this.religion,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    accessToken: json["accessToken"],
-    refreshToken: json["refreshToken"],
-    userId: json["userId"],
-    shortName: json["short_name"],
-    fullName: json["full_name"],
-    loginId: json["login_id"],
-    profilePicture: json["profile_picture"],
-    employementData: json["employement_data"] == null ? null : EmployementData.fromJson(json["employement_data"]),
-    contactData: json["contact_data"] == null ? null : ContactData.fromJson(json["contact_data"]),
-    role: json["role"],
-    position: json["position"],
-    leaveData: json["leave_data"] == null ? null : LeaveData.fromJson(json["leave_data"]),
-    team: json["team"],
-    financeData: json["finance_data"] == null ? null : FinanceData.fromJson(json["finance_data"]),
-    lastLoginAt: json["last_login_at"] == null ? null : DateTime.parse(json["last_login_at"]),
-    lifetime: json["lifetime"],
-    dateOfBirth: json["date_of_birth"] == null ? null : DateTime.parse(json["date_of_birth"]),
-    nationality: json["nationality"],
-    passportNumber: json["passport_number"],
-    passportExpiryDate: json["passport_expiry_date"] == null ? null : DateTime.parse(json["passport_expiry_date"]),
-    passportCopy: json["passport_copy"],
-    gender: json["gender"],
-    race: json["race"],
-    maritalStatus: json["marital_status"],
-    religion: json["religion"],
-  );
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    print("json[""] ");
+    print(json["leave_data"] );
+    return UserModel(
+        accessToken: json["accessToken"],
+        refreshToken: json["refreshToken"],
+        userId: json["userId"],
+        shortName: json["short_name"],
+        fullName: json["full_name"],
+        loginId: json["login_id"],
+        profilePicture: json["profile_picture"],
+        employementData: json["employement_data"] == null
+            ? null
+            : EmployementData.fromJson(json["employement_data"]),
+        contactData: json["contact_data"] == null
+            ? null
+            : ContactData.fromJson(json["contact_data"]),
+        role: json["role"],
+        position: json["position"],
+        leaveData: json["leave_data"] == null
+            ? null
+            : LeaveData.fromJson(json["leave_data"]),
+        team: json["team"],
+        financeData: json["finance_data"] == null
+            ? null
+            : FinanceData.fromJson(json["finance_data"]),
+        lastLoginAt: json["last_login_at"] == null
+            ? null
+            : DateTime.parse(json["last_login_at"]),
+        lifetime: json["lifetime"],
+        dateOfBirth: json["date_of_birth"] == null
+            ? null
+            : DateTime.parse(json["date_of_birth"]),
+        nationality: json["nationality"],
+        passportNumber: json["passport_number"],
+        passportExpiryDate: json["passport_expiry_date"] == null
+            ? null
+            : DateTime.parse(json["passport_expiry_date"]),
+        passportCopy: json["passport_copy"],
+        gender: json["gender"],
+        race: json["race"],
+        maritalStatus: json["marital_status"],
+        religion: json["religion"],
+      );
+  }
 
   Map<String, dynamic> toJson() => {
-    "accessToken": accessToken,
-    "refreshToken": refreshToken,
-    "userId": userId,
-    "short_name": shortName,
-    "full_name": fullName,
-    "login_id": loginId,
-    "profile_picture": profilePicture,
-    "employement_data": employementData?.toJson(),
-    "contact_data": contactData?.toJson(),
-    "role": role,
-    "position": position,
-    "leave_data": leaveData?.toJson(),
-    "team": team,
-    "finance_data": financeData?.toJson(),
-    "last_login_at": lastLoginAt?.toIso8601String(),
-    "lifetime": lifetime,
-    "date_of_birth": "${dateOfBirth!.year.toString().padLeft(4, '0')}-${dateOfBirth!.month.toString().padLeft(2, '0')}-${dateOfBirth!.day.toString().padLeft(2, '0')}",
-    "nationality": nationality,
-    "passport_number": passportNumber,
-    "passport_expiry_date": "${passportExpiryDate!.year.toString().padLeft(4, '0')}-${passportExpiryDate!.month.toString().padLeft(2, '0')}-${passportExpiryDate!.day.toString().padLeft(2, '0')}",
-    "passport_copy": passportCopy,
-    "gender": gender,
-    "race": race,
-    "marital_status": maritalStatus,
-    "religion": religion,
-  };
+        "accessToken": accessToken ?? '',
+        "refreshToken": refreshToken ?? '',
+        "userId": userId ?? '',
+        "short_name": shortName ?? '',
+        "full_name": fullName ?? '',
+        "login_id": loginId ?? '',
+        "profile_picture": profilePicture ?? '',
+        "employement_data": employementData?.toJson(),
+        "contact_data": contactData?.toJson(),
+        "role": role ?? '',
+        "position": position ?? '',
+        "leave_data": leaveData?.toJson(),
+        "team": team ?? '',
+        "finance_data": financeData?.toJson(),
+        "last_login_at": lastLoginAt?.toIso8601String(),
+        "lifetime": lifetime ?? '',
+        "date_of_birth":
+            "${dateOfBirth!.year.toString().padLeft(4, '0')}-${dateOfBirth!.month.toString().padLeft(2, '0')}-${dateOfBirth!.day.toString().padLeft(2, '0')}",
+        "nationality": nationality ?? '',
+        "passport_number": passportNumber ?? '',
+        "passport_expiry_date":
+            "${passportExpiryDate!.year.toString().padLeft(4, '0')}-${passportExpiryDate!.month.toString().padLeft(2, '0')}-${passportExpiryDate!.day.toString().padLeft(2, '0')}",
+        "passport_copy": passportCopy ?? '',
+        "gender": gender ?? '',
+        "race": race ?? '',
+        "marital_status": maritalStatus ?? '',
+        "religion": religion ?? '',
+      };
 }
 
 class ContactData {
@@ -149,42 +168,46 @@ class ContactData {
   });
 
   factory ContactData.fromJson(Map<String, dynamic> json) => ContactData(
-    id: json["id"],
-    userId: json["user_id"],
-    phoneCode: json["phone_code"],
-    mobileNumber: json["mobile_number"],
-    houseNumber: json["house_number"],
-    email: json["email"],
-    address: json["address"],
-    city: json["city"],
-    postcode: json["postcode"],
-    country: json["country"],
-    emergencyPerson: json["emergency_person"],
-    emergencyRelation: json["emergency_relation"],
-    emergencyPhoneCode: json["emergency_phone_code"],
-    emergencyContact: json["emergency_contact"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-  );
+        id: json["id"],
+        userId: json["user_id"],
+        phoneCode: json["phone_code"],
+        mobileNumber: json["mobile_number"],
+        houseNumber: json["house_number"],
+        email: json["email"],
+        address: json["address"],
+        city: json["city"],
+        postcode: json["postcode"],
+        country: json["country"],
+        emergencyPerson: json["emergency_person"],
+        emergencyRelation: json["emergency_relation"],
+        emergencyPhoneCode: json["emergency_phone_code"],
+        emergencyContact: json["emergency_contact"],
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "user_id": userId,
-    "phone_code": phoneCode,
-    "mobile_number": mobileNumber,
-    "house_number": houseNumber,
-    "email": email,
-    "address": address,
-    "city": city,
-    "postcode": postcode,
-    "country": country,
-    "emergency_person": emergencyPerson,
-    "emergency_relation": emergencyRelation,
-    "emergency_phone_code": emergencyPhoneCode,
-    "emergency_contact": emergencyContact,
-    "created_at": createdAt?.toIso8601String(),
-    "updated_at": updatedAt?.toIso8601String(),
-  };
+        "id": id ?? '',
+        "user_id": userId ?? '',
+        "phone_code": phoneCode ?? '',
+        "mobile_number": mobileNumber ?? '',
+        "house_number": houseNumber ?? '',
+        "email": email ?? '',
+        "address": address ?? '',
+        "city": city ?? '',
+        "postcode": postcode ?? '',
+        "country": country ?? '',
+        "emergency_person": emergencyPerson ?? '',
+        "emergency_relation": emergencyRelation ?? '',
+        "emergency_phone_code": emergencyPhoneCode ?? '',
+        "emergency_contact": emergencyContact ?? '',
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+      };
 }
 
 class EmployementData {
@@ -248,67 +271,81 @@ class EmployementData {
     this.updatedAt,
   });
 
-  factory EmployementData.fromJson(Map<String, dynamic> json) => EmployementData(
-    id: json["id"],
-    userId: json["user_id"],
-    dateJoined: json["date_joined"] == null ? null : DateTime.parse(json["date_joined"]),
-    offerLetter: json["offer_letter"],
-    rolePermission: json["role_permission"],
-    reportTo: json["report_to"],
-    position: json["position"],
-    positionGrade: json["position_grade"],
-    team: json["team"],
-    workingHours: json["working_hours"],
-    workLocation: json["work_location"],
-    branchOffice: json["branch_office"],
-    jobStatus: json["job_status"],
-    jobType: json["job_type"],
-    jobTypeStart: json["job_type_start"],
-    jobTypeEnd: json["job_type_end"],
-    jobTypeRemark: json["job_type_remark"],
-    workPermit: json["work_permit"],
-    visaNo: json["visa_no"],
-    visaIssueDate: json["visa_issue_date"] == null ? null : DateTime.parse(json["visa_issue_date"]),
-    visaExpiredDate: json["visa_expired_date"] == null ? null : DateTime.parse(json["visa_expired_date"]),
-    referral: json["referral"],
-    ownEmployee: json["own_employee"],
-    referralName: json["referral_name"],
-    referralByTeam: json["referral_by_team"],
-    referralContact: json["referral_contact"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-  );
+  factory EmployementData.fromJson(Map<String, dynamic> json) =>
+      EmployementData(
+        id: json["id"],
+        userId: json["user_id"],
+        dateJoined: json["date_joined"] == null
+            ? null
+            : DateTime.parse(json["date_joined"]),
+        offerLetter: json["offer_letter"] ?? '',
+        rolePermission: json["role_permission"] ?? '',
+        reportTo: json["report_to"] ?? '',
+        position: json["position"] ?? '',
+        positionGrade: json["position_grade"] ?? '',
+        team: json["team"] ?? '',
+        workingHours: json["working_hours"] ?? '',
+        workLocation: json["work_location"] ?? '',
+        branchOffice: json["branch_office"] ?? '',
+        jobStatus: json["job_status"] ?? '',
+        jobType: json["job_type"] ?? '',
+        jobTypeStart: json["job_type_start"] ?? '',
+        jobTypeEnd: json["job_type_end"] ?? '',
+        jobTypeRemark: json["job_type_remark"] ?? '',
+        workPermit: json["work_permit"] ?? '',
+        visaNo: json["visa_no"] ?? '',
+        visaIssueDate: json["visa_issue_date"] == null
+            ? null
+            : DateTime.parse(json["visa_issue_date"]),
+        visaExpiredDate: json["visa_expired_date"] == null
+            ? null
+            : DateTime.parse(json["visa_expired_date"]),
+        referral: json["referral"] ?? '',
+        ownEmployee: json["own_employee"] ?? '',
+        referralName: json["referral_name"] ?? '',
+        referralByTeam: json["referral_by_team"] ?? '',
+        referralContact: json["referral_contact"] ?? '',
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "user_id": userId,
-    "date_joined": "${dateJoined!.year.toString().padLeft(4, '0')}-${dateJoined!.month.toString().padLeft(2, '0')}-${dateJoined!.day.toString().padLeft(2, '0')}",
-    "offer_letter": offerLetter,
-    "role_permission": rolePermission,
-    "report_to": reportTo,
-    "position": position,
-    "position_grade": positionGrade,
-    "team": team,
-    "working_hours": workingHours,
-    "work_location": workLocation,
-    "branch_office": branchOffice,
-    "job_status": jobStatus,
-    "job_type": jobType,
-    "job_type_start": jobTypeStart,
-    "job_type_end": jobTypeEnd,
-    "job_type_remark": jobTypeRemark,
-    "work_permit": workPermit,
-    "visa_no": visaNo,
-    "visa_issue_date": "${visaIssueDate!.year.toString().padLeft(4, '0')}-${visaIssueDate!.month.toString().padLeft(2, '0')}-${visaIssueDate!.day.toString().padLeft(2, '0')}",
-    "visa_expired_date": "${visaExpiredDate!.year.toString().padLeft(4, '0')}-${visaExpiredDate!.month.toString().padLeft(2, '0')}-${visaExpiredDate!.day.toString().padLeft(2, '0')}",
-    "referral": referral,
-    "own_employee": ownEmployee,
-    "referral_name": referralName,
-    "referral_by_team": referralByTeam,
-    "referral_contact": referralContact,
-    "created_at": createdAt?.toIso8601String(),
-    "updated_at": updatedAt?.toIso8601String(),
-  };
+        "id": id,
+        "user_id": userId,
+        "date_joined":
+            "${dateJoined!.year.toString().padLeft(4, '0')}-${dateJoined!.month.toString().padLeft(2, '0')}-${dateJoined!.day.toString().padLeft(2, '0')}",
+        "offer_letter": offerLetter ?? '',
+        "role_permission": rolePermission ?? '',
+        "report_to": reportTo ?? '',
+        "position": position ?? '',
+        "position_grade": positionGrade ?? '',
+        "team": team ?? '',
+        "working_hours": workingHours ?? '',
+        "work_location": workLocation ?? '',
+        "branch_office": branchOffice ?? '',
+        "job_status": jobStatus ?? '',
+        "job_type": jobType ?? '',
+        "job_type_start": jobTypeStart ?? '',
+        "job_type_end": jobTypeEnd ?? '',
+        "job_type_remark": jobTypeRemark ?? '',
+        "work_permit": workPermit ?? '',
+        "visa_no": visaNo ?? '',
+        "visa_issue_date":
+            "${visaIssueDate!.year.toString().padLeft(4, '0')}-${visaIssueDate!.month.toString().padLeft(2, '0')}-${visaIssueDate!.day.toString().padLeft(2, '0')}",
+        "visa_expired_date":
+            "${visaExpiredDate!.year.toString().padLeft(4, '0')}-${visaExpiredDate!.month.toString().padLeft(2, '0')}-${visaExpiredDate!.day.toString().padLeft(2, '0')}",
+        "referral": referral ?? '',
+        "own_employee": ownEmployee ?? '',
+        "referral_name": referralName ?? '',
+        "referral_by_team": referralByTeam ?? '',
+        "referral_contact": referralContact ?? '',
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+      };
 }
 
 class FinanceData {
@@ -337,30 +374,34 @@ class FinanceData {
   });
 
   factory FinanceData.fromJson(Map<String, dynamic> json) => FinanceData(
-    id: json["id"],
-    userId: json["user_id"],
-    currency: json["currency"],
-    beneficiary: json["beneficiary"],
-    bank: json["bank"],
-    accountNumber: json["account_number"],
-    basicSalary: json["basic_salary"],
-    kpiBonus: json["kpi_bonus"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-  );
+        id: json["id"] ?? '',
+        userId: json["user_id"] ?? '',
+        currency: json["currency"] ?? '',
+        beneficiary: json["beneficiary"] ?? '',
+        bank: json["bank"] ?? '',
+        accountNumber: json["account_number"] ?? '',
+        basicSalary: json["basic_salary"] ?? '',
+        kpiBonus: json["kpi_bonus"] ?? '',
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "user_id": userId,
-    "currency": currency,
-    "beneficiary": beneficiary,
-    "bank": bank,
-    "account_number": accountNumber,
-    "basic_salary": basicSalary,
-    "kpi_bonus": kpiBonus,
-    "created_at": createdAt?.toIso8601String(),
-    "updated_at": updatedAt?.toIso8601String(),
-  };
+        "id": id ?? '',
+        "user_id": userId ?? '',
+        "currency": currency ?? '',
+        "beneficiary": beneficiary ?? '',
+        "bank": bank ?? '',
+        "account_number": accountNumber ?? '',
+        "basic_salary": basicSalary ?? '',
+        "kpi_bonus": kpiBonus ?? '',
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+      };
 }
 
 class LeaveData {
@@ -405,44 +446,48 @@ class LeaveData {
   });
 
   factory LeaveData.fromJson(Map<String, dynamic> json) => LeaveData(
-    id: json["id"],
-    userId: json["user_id"],
-    restDay: json["rest_day"],
-    annualLeave: json["annual_leave"],
-    alStartFrom: json["al_start_from"],
-    alExpiredOn: json["al_expired_on"],
-    flightAllowanceCurrency: json["flight_allowance_currency"],
-    flightAllowance: json["flight_allowance"],
-    eligibleStartFrom: json["eligible_start_from"],
-    eligibleExpiredOn: json["eligible_expired_on"],
-    mealsAllowanceCurrency: json["meals_allowance_currency"],
-    mealsAllowance: json["meals_allowance"],
-    medicalAllowanceCurrency: json["medical_allowance_currency"],
-    medicalAllowance: json["medical_allowance"],
-    medicalEligibleStartFrom: json["medical_eligible_start_from"],
-    medicalEligibleExpiredOn: json["medical_eligible_expired_on"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-  );
+        id: json["id"] ,
+        userId: json["user_id"] ,
+        restDay: json["rest_day"] ?? '',
+        annualLeave: json["annual_leave"] ?? '',
+        alStartFrom: json["al_start_from"] ?? '',
+        alExpiredOn: json["al_expired_on"] ?? '',
+        flightAllowanceCurrency: json["flight_allowance_currency"] ?? '',
+        flightAllowance: json["flight_allowance"] ?? '',
+        eligibleStartFrom: json["eligible_start_from"] ?? '',
+        eligibleExpiredOn: json["eligible_expired_on"] ?? '',
+        mealsAllowanceCurrency: json["meals_allowance_currency"] ?? '',
+        mealsAllowance: json["meals_allowance"] ?? '',
+        medicalAllowanceCurrency: json["medical_allowance_currency"] ?? '',
+        medicalAllowance: json["medical_allowance"] ?? '',
+        medicalEligibleStartFrom: json["medical_eligible_start_from"] ?? '',
+        medicalEligibleExpiredOn: json["medical_eligible_expired_on"] ?? '',
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "user_id": userId,
-    "rest_day": restDay,
-    "annual_leave": annualLeave,
-    "al_start_from": alStartFrom,
-    "al_expired_on": alExpiredOn,
-    "flight_allowance_currency": flightAllowanceCurrency,
-    "flight_allowance": flightAllowance,
-    "eligible_start_from": eligibleStartFrom,
-    "eligible_expired_on": eligibleExpiredOn,
-    "meals_allowance_currency": mealsAllowanceCurrency,
-    "meals_allowance": mealsAllowance,
-    "medical_allowance_currency": medicalAllowanceCurrency,
-    "medical_allowance": medicalAllowance,
-    "medical_eligible_start_from": medicalEligibleStartFrom,
-    "medical_eligible_expired_on": medicalEligibleExpiredOn,
-    "created_at": createdAt?.toIso8601String(),
-    "updated_at": updatedAt?.toIso8601String(),
-  };
+        "id": id,
+        "user_id": userId,
+        "rest_day": restDay,
+        "annual_leave": annualLeave,
+        "al_start_from": alStartFrom,
+        "al_expired_on": alExpiredOn,
+        "flight_allowance_currency": flightAllowanceCurrency,
+        "flight_allowance": flightAllowance,
+        "eligible_start_from": eligibleStartFrom,
+        "eligible_expired_on": eligibleExpiredOn,
+        "meals_allowance_currency": mealsAllowanceCurrency,
+        "meals_allowance": mealsAllowance,
+        "medical_allowance_currency": medicalAllowanceCurrency,
+        "medical_allowance": medicalAllowance,
+        "medical_eligible_start_from": medicalEligibleStartFrom,
+        "medical_eligible_expired_on": medicalEligibleExpiredOn,
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+      };
 }

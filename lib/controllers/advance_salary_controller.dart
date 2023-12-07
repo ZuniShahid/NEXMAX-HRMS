@@ -38,7 +38,6 @@ class AdvanceSalaryController extends GetxController {
         'page': currentPage.toString(),
         'filter_year': selectedYear.toString(),
       };
-      print(body);
 
       var response =
           await DataApiService.instance.post('/salary-advances', body);
@@ -46,10 +45,14 @@ class AdvanceSalaryController extends GetxController {
       if (response == null) return;
 
       var result = json.decode(response);
-      print("result");
-      print(result);
       totalItemCount = int.parse(result['totalCount'].toString());
-      loadedItemCount += int.parse(result['loadedCount'].toString());
+      int loadedCount = int.parse(result['loadedCount'].toString());
+
+      if (loadedCount < 0) {
+        loadedItemCount = 0;
+      } else {
+        loadedItemCount += loadedCount;
+      }
 
       if (loadedItemCount < totalItemCount) {
         currentPage++;
@@ -77,9 +80,6 @@ class AdvanceSalaryController extends GetxController {
   }
 
   void loadNextPage() {
-    print("loadedItemCount");
-    print(loadedItemCount);
-    print(totalItemCount);
     if (loadedItemCount < totalItemCount) {
       fetchingAdvanceSalaryList();
     }
@@ -127,8 +127,6 @@ class AdvanceSalaryController extends GetxController {
       if (response == null) return;
 
       var result = json.decode(response);
-      print("result");
-      print(result);
       final errors = result['errors'];
       final status = result['status'];
 
@@ -141,7 +139,6 @@ class AdvanceSalaryController extends GetxController {
 
         CustomDialogBox.showErrorDialog(description: '$errorMessages');
       }
-
     } catch (error) {
       if (error is BadRequestException) {
         var apiError = json.decode(error.message!);
@@ -150,5 +147,25 @@ class AdvanceSalaryController extends GetxController {
         _baseController.handleError(error);
       }
     }
+  }
+
+  MapEntry<String, double> calculateTotalSalaryAndCurrencyForCurrentMonth() {
+    final currentYear = DateTime.now().year;
+    final currentMonth = DateTime.now().month;
+
+    double totalSalary = 0;
+    String currency = 'USD'; // Initialize with an empty string
+
+    for (var salary in advanceSalaryList) {
+      if (salary.createdAt != null &&
+          salary.createdAt!.year == currentYear &&
+          salary.createdAt!.month == currentMonth) {
+        // Assuming 'amount' is a String, you may need to parse it to double if necessary
+        totalSalary += double.tryParse(salary.amount ?? '0.0') ?? 0.0;
+        currency = salary.currency ?? ''; // Update the currency
+      }
+    }
+
+    return MapEntry(currency, totalSalary);
   }
 }
